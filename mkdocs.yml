@@ -61,6 +61,7 @@ plugins:
 
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   icon:
     logo: fontawesome/solid/book-open
