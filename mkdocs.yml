@@ -1,0 +1,128 @@
+site_name: Sky_miner
+site_description: an example blog set up following the tutorial
+site_url: https://skyminer.top
+nav:
+  - Home: index.md
+  - 面试相关:
+    - interview/index.md
+    - interview/auc.md
+    - interview/resnet.md
+    - interview/transformer.md
+    - interview/leetcode100.md
+    - interview/cheating_sheet.md
+  - 机器学习:
+    - machine_learning/index.md
+    - machine_learning/decision_tree.md
+  - 方法记录:
+    - methods/index.md
+    - methods/format_disk.md
+    - methods/vscode_setting.md
+    - methods/linux_command.md
+  - 杂项:
+    - others/index.md
+    - others/ads.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+plugins:
+  - search
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+theme:
+  name: material
+  language: zh
+  icon:
+    logo: fontawesome/solid/book-open
+  font:
+    text: Jetbrains Mono
+    code: Jetbrains Mono
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate 
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.top
+    - navigation.tabs
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette:
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: white
+      accent: deep orange
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: black
+      accent: yellow
+      
+extra:
+  social:
+    - icon: simple/discord
+      link: https://discord.gg/uBA2PGrh7E
+    - icon: simple/github
+      link: https://github.com/Skyminers
+  analytics: 
+    provider: google
+    property: G-6NJEW490XP
+    feedback:
+      title: 这篇文章有帮助吗？
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: 有帮助
+          data: 1
+          note: >-
+            谢谢！大家的认可是我前进的动力！
+        - icon: material/emoticon-sad-outline
+          name: 无帮助
+          data: 0
+          note: >- 
+            感谢反馈，如有疑问或建议可以联系我<a href="mailto:sky_miner@qq.com">sky_miner@qq.com</a>
+
+copyright: Copyright &copy; 2025 Sky_miner
