@@ -5,6 +5,7 @@ nav:
   - Home: index.md
   - 面试相关:
     - interview/index.md
+    - interview/interview_2024.md
     - interview/auc.md
     - interview/resnet.md
     - interview/transformer.md
