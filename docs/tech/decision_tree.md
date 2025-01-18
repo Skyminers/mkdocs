@@ -84,7 +84,11 @@ def createTree(dataSet, labels):
 上面的代码中最需要注意的是函数`chooseBestFeatureToSplit`的实现，在这个函数中，我们需要分别计算每一个特征 $A$ 带来的信息增益。
 
 $$
-Gain(A) = Info(D) - Info_A(D), \\ Info(D) = -\sum_{i=1}^mp_i\log_2p_i, \\ Info_A(D) = \sum_{j=1}^v \frac{|D_j|}{|D|}\times Info(D_j)
+\begin{align*}  
+Gain(A) &= Info(D) - Info_A(D), \\ 
+Info(D) &= -\sum_{i=1}^mp_i\log_2p_i, \\ 
+Info_A(D) &= \sum_{j=1}^v \frac{|D_j|}{|D|}\times Info(D_j)
+\end{align*}
 $$
 
 我们先来实现对 $Info(D)$ 进行计算的函数：
