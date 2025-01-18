@@ -67,7 +67,7 @@ VScode 本身的设置也需要一些修正！
 
 `terminal.integrated.fontFamily`
 
-因为我的 zsh 使用了一些**神奇**的字符，所以需要把终端字体修改为 `BitstromWera Nerd Font Propo` 才能正常显示这些奇妙的字符。当然这个字体也是需要安装的([神秘链接](https://www.nerdfonts.com/font-downloads))。也可以挑选其他喜欢的字体。
+因为我的 zsh 使用了一些 **神奇** 的字符，所以需要把终端字体修改为 `BitstromWera Nerd Font Propo` 才能正常显示这些奇妙的字符。当然这个字体也是需要安装的([神秘链接](https://www.nerdfonts.com/font-downloads))。也可以挑选其他喜欢的字体。
 
 ---
 
