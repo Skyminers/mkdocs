@@ -67,8 +67,8 @@
   
   .md-header--shadow,
   .md-header--landing {
-    box-shadow: none;
-    transition: none;
+    /* box-shadow: none; */
+    /* transition: none; */
     backdrop-filter: saturate(180%) blur(20px); /* Gaussian blur */
     -webkit-backdrop-filter: saturate(180%) blur(20px); /* Safari */
     background-color: var(--md-header-bg-color);
