@@ -71,7 +71,6 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js
 extra_css:
-  - https://unpkg.com/katex@0/dist/katex.min.css
   - stylesheets/extra.css
 plugins:
   - search
@@ -134,8 +133,7 @@ theme:
       toggle:
         icon: material/theme-light-dark
         name: 深色模式
-      primary: white
-      accent: deep orange
+      primary: custom
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -143,8 +141,7 @@ theme:
       toggle:
         icon: material/theme-light-dark
         name: 浅色模式
-      primary: black
-      accent: yellow
+      primary: custom
       
 extra:
   social:
