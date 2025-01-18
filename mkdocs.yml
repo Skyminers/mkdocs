@@ -26,7 +26,10 @@ nav:
     - others/ads.md
 
 markdown_extensions:
+  - abbr
   - attr_list
+  - def_list
+  - footnotes
   - md_in_html
   - pymdownx.blocks.caption
   - pymdownx.emoji:
@@ -50,15 +53,30 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.arithmatex:
       generic: true
+  - toc:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
 extra_javascript:
   - javascripts/katex.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
+  - stylesheets/extra.css
 plugins:
   - search
-  - glightbox
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: none
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: false
+      auto_caption: false
+      caption_position: bottom
   - git-revision-date-localized:
       type: timeago
       custom_format: "%d. %B %Y"  # 时间格式
@@ -78,12 +96,15 @@ theme:
   icon:
     logo: fontawesome/solid/book-open
   font:
-    text: Jetbrains Mono
-    code: Jetbrains Mono
+    text: Noto Sans SC
+    code: Fira Code
   features:
     - content.code.copy
     - content.code.select
     - content.code.annotate 
+    - content.action.edit
+    - content.tabs.link
+    - content.tooltips
     - navigation.footer
     - navigation.indexes
     - navigation.instant
@@ -95,14 +116,15 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+    - toc.follow
   palette:
 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
+        icon: material/theme-light-dark
+        name: 深色模式
       primary: white
       accent: deep orange
 
@@ -110,8 +132,8 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+        icon: material/theme-light-dark
+        name: 浅色模式
       primary: black
       accent: yellow
       
@@ -137,5 +159,6 @@ extra:
           data: 0
           note: >- 
             感谢反馈，如有疑问或建议可以联系我<a href="mailto:sky_miner@qq.com">sky_miner@qq.com</a>
+
 
 copyright: Copyright &copy; 2025 Sky_miner
