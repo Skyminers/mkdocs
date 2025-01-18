@@ -929,6 +929,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载硬盘
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1139,6 +1148,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载硬盘
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1167,29 +1185,34 @@
   
 
 
-<h1 id="linux">Linux 操作记录</h1>
-<h2 id="_1">环境信息查询</h2>
-<h3 id="cpu">查看内核/操作系统/CPU信息</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uname<span class="w"> </span>-a
+<h1 id="linux">Linux 操作记录<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<h2 id="_1">环境信息查询<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="cpu">查看内核/操作系统/CPU信息<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">uname -a</span>
 </span></code></pre></div>
-<h3 id="_2">查看操作系统版本</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>/etc/issue
+<h3 id="_2">查看操作系统版本<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">head -n 1 /etc/issue</span>
 </span></code></pre></div>
-<h3 id="cpu_1">查看 CPU 信息</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat<span class="w"> </span>/proc/cpuinfo
+<h3 id="cpu_1">查看 CPU 信息<a class="headerlink" href="#cpu_1" title="Permanent link">&para;</a></h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">cat /proc/cpuinfo</span>
 </span></code></pre></div>
-<h2 id="_3">杂项</h2>
-<h3 id="_4">查找端口占用</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lsof<span class="w"> </span>-i:端口号
+<h2 id="_3">杂项<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">查找端口占用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">lsof -i:端口号</span>
 </span></code></pre></div>
-<h3 id="_5">删除显卡上所有的进程</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fuser<span class="w"> </span>-v<span class="w"> </span>/dev/nvidiaX<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-t<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9
+<h3 id="_5">删除显卡上所有的进程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">fuser -v /dev/nvidiaX | xargs -t -n 1 kill -9</span>
 </span></code></pre></div>
 <p>其中大写的 <code>X</code> 替换为显卡编号（<code>0-7</code>）</p>
-<h3 id="_6">删除显卡上某个用户所有的进程</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fuser<span class="w"> </span>-v<span class="w"> </span>/dev/nvidiaX<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>zhr<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-t<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9
+<h3 id="_6">删除显卡上某个用户所有的进程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fuser<span class="w"> </span>-v<span class="w"> </span>/dev/nvidiaX<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>zhr<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-t<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9
 </span></code></pre></div>
 <p>貌似存在一些问题，主要是 <code>xargs</code> 没有正确 parse 出 PID，把所有内容都放进去 Kill 了一遍。</p>
+<h3 id="_7">挂载硬盘<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>首先通过 <code>fdisk -l</code> 查看已有硬盘信息，找到要挂在的硬盘，例如 <code>/dev/sdb1</code></p>
+<p>然后通过 <code>mount</code> 命令进行挂载，例如将硬盘 <code>dev/sdb1</code> 挂载到 <code>/home</code> 目录下的命令可以写为：</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">mount /dev/sdb1 /home</span>
+</span></code></pre></div>
 
 
 
@@ -1212,7 +1235,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-01-09T11:35:43+01:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-01-09</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-01-18T11:49:59+01:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-01-18</span>
   </span>
 
     
@@ -1399,11 +1422,9 @@
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../javascripts/katex.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
-      
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});

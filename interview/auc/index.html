@@ -1119,9 +1119,9 @@
   
 
 
-<h1 id="auc">AUC 面试资料整理</h1>
+<h1 id="auc">AUC 面试资料整理<a class="headerlink" href="#auc" title="Permanent link">&para;</a></h1>
 <hr />
-<h2 id="auc_1">什么是 AUC</h2>
+<h2 id="auc_1">什么是 AUC<a class="headerlink" href="#auc_1" title="Permanent link">&para;</a></h2>
 <p>AUC (Area under the curve), 直译为曲线下面的面积。这里的曲线通常指的是 ROC (Receiver operating characteristic)。ROC 曲线是一种用于评估二分类模型的性能的图形工具。</p>
 <p>对于二分类问题，预测模型通常会对样本预测一个得分 <span class="arithmatex">\(s\)</span> 或者概率 <span class="arithmatex">\(p\)</span>，然后选取一个阈值将不同得分或者概率的样本分别划分为正样本和负样本进行预测。预测和实际结果的比对中可能会出现下面四种情况：</p>
 <table>
@@ -1154,7 +1154,7 @@ TPR = \frac{TP}{TP + FN}, \quad FPR = \frac{FP}{FP + TN}
 <p><a class="glightbox" href="../assets/roc.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/roc.png" /></a></p>
 <p>ROC 曲线下的面积即为 AUC</p>
 <hr />
-<h2 id="auc_2">AUC 有什么意义</h2>
+<h2 id="auc_2">AUC 有什么意义<a class="headerlink" href="#auc_2" title="Permanent link">&para;</a></h2>
 <p>AUC 尝尝被用来作为模型好坏的指标:</p>
 <ul>
 <li><span class="arithmatex">\(AUC = 0.5\)</span> 表示模型没有分类能力，相当于随机猜测</li>
@@ -1164,12 +1164,12 @@ TPR = \frac{TP}{TP + FN}, \quad FPR = \frac{FP}{FP + TN}
 </ul>
 <p>AUC 是阈值无关的，该参数衡量了模型在所有可能的分类阈值下的表现，因此不受单一阈值的影响。并且 AUC 综合了 TPR 和 FPR 的信息，能够全面评估模型的性能。</p>
 <p>但是 AUC 可能不适用于极度不平衡的数据，在极度不平衡的数据中 AUC 可能无法准确反应模型的性能。</p>
-<h3 id="auc_3">AUC 的概率解释</h3>
-<p>AUC 可以看作是随机从正负样本中选取一对正负样本，其中正样本大于负样本的概率。在<em>参考链接1</em>中有对这一性质进行证明。</p>
-<h3 id="auc_4">AUC 的排序特性</h3>
+<h3 id="auc_3">AUC 的概率解释<a class="headerlink" href="#auc_3" title="Permanent link">&para;</a></h3>
+<p>AUC 可以看作是随机从正负样本中选取一对正负样本，其中正样本大于负样本的概率。在*参考链接1*中有对这一性质进行证明。</p>
+<h3 id="auc_4">AUC 的排序特性<a class="headerlink" href="#auc_4" title="Permanent link">&para;</a></h3>
 <p>基于概率解释，AUC 实际上在说模型把一个正样本排在负样本之前的概率。所以这个概率常用在排序场景的模型评估，例如搜索和推荐等场景。</p>
 <hr />
-<h2 id="_1">代码测试</h2>
+<h2 id="_1">代码测试<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
@@ -1220,7 +1220,7 @@ TPR = \frac{TP}{TP + FN}, \quad FPR = \frac{FP}{FP + TN}
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AUC: </span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="_2">参考链接</h2>
+<h2 id="_2">参考链接<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://tracholar.github.io/machine-learning/2018/01/26/auc.html">深入理解 AUC</a></li>
 <li><a href="https://www.cnblogs.com/suanfajin/p/18241546">算法金 | 一文彻底理解机器学习 ROC-AUC</a></li>
@@ -1434,11 +1434,9 @@ TPR = \frac{TP}{TP + FN}, \quad FPR = \frac{FP}{FP + TN}
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../javascripts/katex.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
-      
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});

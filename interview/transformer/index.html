@@ -1293,9 +1293,9 @@
   
 
 
-<h1 id="transformer">Transformer 面试资料整理</h1>
+<h1 id="transformer">Transformer 面试资料整理<a class="headerlink" href="#transformer" title="Permanent link">&para;</a></h1>
 <hr />
-<h2 id="_1">简介</h2>
+<h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><a href="https://arxiv.org/pdf/1706.03762">《Attention is All You Need》</a></p>
 </blockquote>
@@ -1304,12 +1304,12 @@
 
 Token 可以捕获全局的信息，如果直接用第一个的话可能会跟第一个 Patch 有很强的关系，无法有效捕获其他 Patch 的信息。 -->
 
-<h3 id="_2">简单介绍一下模型</h3>
+<h3 id="_2">简单介绍一下模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>Transformer 由编码器和解码器组成，编码器内部由一个多头自注意力机制和一个前馈神经网络组成，解码器由一个 Masked 多头自注意力机制、一个多头注意力机制和一个前馈神经网络组成。在 Transformer 中利用了 Resnet 的残差连接，使模型更容易训练并且能够训练更深的网络，同时也缓解了梯度震荡、网络退化等问题。</p>
 <p>Encoder 中，Self-Attention 的作用是获取上下文信息这一层的参数并不多，主要是融合上下文信息。接下来通过参数量较大的前馈神经网络储存知识。</p>
 <p>Decoder 的自注意力机制部分可以用于信息融合，在多模块、机器翻译等场景有所应用。融合时 Encoder 向 decoder 的这一层提供 <span class="arithmatex">\(K\)</span> 和 <span class="arithmatex">\(V\)</span>，decoder 的这一层提供 <span class="arithmatex">\(Q\)</span>。</p>
 <p>因为 Attention 的计算复杂度跟输入的 Token 相关是输入的平方级别（所以许多大模型都限制输入的最长 Token），所以在推理时可以通过 KV-cache 进行优化：每次 decoder 将之前的 <span class="arithmatex">\(Q\)</span> 和 <span class="arithmatex">\(K\)</span> 的点乘结果缓存起来，避免重复计算。用空间换时间。</p>
-<h3 id="ffn">介绍一下 FFN 计算公式</h3>
+<h3 id="ffn">介绍一下 FFN 计算公式<a class="headerlink" href="#ffn" title="Permanent link">&para;</a></h3>
 <p>FFN由两个全连接层（即前馈神经网络）和一个激活函数组成。下面是FFN块的计算公式：</p>
 <div class="arithmatex">\[
 \operatorname{FFN}(\boldsymbol{x})=\operatorname{Relu}\left(\boldsymbol{x} \boldsymbol{W}_{1}+\boldsymbol{b}_{1}\right) \boldsymbol{W}_{2}+\boldsymbol{b}_{2}
@@ -1323,8 +1323,8 @@ Token 可以捕获全局的信息，如果直接用第一个的话可能会跟�
 <p>增大前馈子层隐状态的维度有利于提升最终翻译结果的质量，因此，前馈子层隐状态的维度一般比自注意力子层要大。</p>
 <p>需要注意的是，上述公式中的 W1、b1、W2、b2 是FFN块的可学习参数，它们会通过训练过程进行学习和更新。</p>
 <hr />
-<h2 id="_3">问答</h2>
-<h3 id="nrom-layernorm-batchnorm">为什么 Nrom 选择 LayerNorm 而不是 BatchNorm？</h3>
+<h2 id="_3">问答<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="nrom-layernorm-batchnorm">为什么 Nrom 选择 LayerNorm 而不是 BatchNorm？<a class="headerlink" href="#nrom-layernorm-batchnorm" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>BN 是在不同 Batch 之间计算的。在 NLP 任务中，不同序列的长度不一样，所以 BatchNorm 会遇到对齐的问题。LN 是在一个 Batch 内计算的，所以不会遇到这个问题。</p>
@@ -1333,7 +1333,7 @@ Token 可以捕获全局的信息，如果直接用第一个的话可能会跟�
 <p>BN 在 NLP 的任务中比较弱，因为 NLP 中同一个位置的词的作用可能完全不一样，BN 将这些作用不一样的词的信息混合在一起，这样会导致信息的丢失。</p>
 </li>
 </ol>
-<h3 id="dk">为什么要除以根号 dk</h3>
+<h3 id="dk">为什么要除以根号 dk<a class="headerlink" href="#dk" title="Permanent link">&para;</a></h3>
 <p>论文中的解释是：在计算 Attention 时，计算的是 <span class="arithmatex">\(Q \cdot K^T\)</span>，如果不除以 <span class="arithmatex">\(\sqrt {d_k}\)</span>，那么 <span class="arithmatex">\(Q \cdot K^T\)</span> 的值会很大，导致 Softmax 后的值很小，这样会导致梯度消失。通过这样的 Scale 可以缓解这个问题。</p>
 <p>为什么是 <span class="arithmatex">\(\sqrt {d_k}\)</span> 呢？从公式来解释，假设向量 <span class="arithmatex">\(q\)</span> 和 <span class="arithmatex">\(k\)</span> 的各个分量是互相独立的随机变量，均值是 <span class="arithmatex">\(0\)</span>，方差是 <span class="arithmatex">\(1\)</span>，那么点积 <span class="arithmatex">\(q\cdot k\)</span> 的均值是 <span class="arithmatex">\(0\)</span>，方差是 <span class="arithmatex">\(d_k\)</span>。</p>
 <p>已知 <span class="arithmatex">\(E(q_i) = E(k_i) = 0, Q(q_i) = Q(k_i) = 1\)</span> 推导过程如下:</p>
@@ -1346,19 +1346,19 @@ Var(q\cdot k) &amp;= \sum_{i=1}^{d_k} Var(q_ik_i) = d_k
 \end{align}
 \]</div>
 <p>所以乘积后的数字方差为 <span class="arithmatex">\(d_k\)</span>，需要除以 <span class="arithmatex">\(\sqrt {d_k}\)</span> 使得方差为 <span class="arithmatex">\(1\)</span>。</p>
-<h3 id="_4">为什么要使用多头注意力</h3>
+<h3 id="_4">为什么要使用多头注意力<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>多头注意力可以注意到不同子空间的信息，捕捉到更加丰富的特征信息。不同的头的关注点可能不相同，例如一个头关注到了语义信息，另一个头关注语法信息。有的实验表明，进行可视化后总有一两个头是独一无二的，与其他的头关注不一样。</p>
 <p>多头注意力并不是必须的，去掉一些头也还是会有不错的效果，因为剩下的头已经有足够的对位置信息、语法信息或罕见词的关注能力了。</p>
-<h3 id="q-k">为什么的 Q 和 K 使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</h3>
+<h3 id="q-k">为什么的 Q 和 K 使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？<a class="headerlink" href="#q-k" title="Permanent link">&para;</a></h3>
 <p>如果相同的话，我们会得到一个泛化能力较差的对称矩阵。不相同的权重矩阵可以保证 Q/K/V 在不同空间进行投影，这增强了表达能力，提高了泛化能力。</p>
-<h3 id="qkv">为什么多头自注意力机制中的 QKV 要用三个不同的矩阵？</h3>
+<h3 id="qkv">为什么多头自注意力机制中的 QKV 要用三个不同的矩阵？<a class="headerlink" href="#qkv" title="Permanent link">&para;</a></h3>
 <ol>
 <li>不同的矩阵可以引入更多的参数量，增大语义空间，提升表达能力。。</li>
 <li>在进行 self-attntion 时，我们更加希望 <span class="arithmatex">\(Q\neq K \neq V\)</span>，引入不同的矩阵可以更好地做到这一点。如果 <span class="arithmatex">\(Q=K=V\)</span>，那么在进行点乘时，每一个 Query 对自己的 Key 都会有很大的值，这会影响每一个 Query 对其他的 Key 的注意力权重，导致 Transformer 的上下文信息的提取能力大幅度下降。</li>
 </ol>
-<h3 id="attention">计算 attention 为何选择点乘而不是加法？两者计算复杂度和效果上有什么区别？</h3>
+<h3 id="attention">计算 attention 为何选择点乘而不是加法？两者计算复杂度和效果上有什么区别？<a class="headerlink" href="#attention" title="Permanent link">&para;</a></h3>
 <p>通过点乘的方式计算会有更高的效率。论文中有实验，在 dk 比较大的时候加法有更好的效果。</p>
-<h3 id="positional-encoding-sin-cos">Positional Encoding 为什么选用 sin 和 cos 函数？</h3>
+<h3 id="positional-encoding-sin-cos">Positional Encoding 为什么选用 sin 和 cos 函数？<a class="headerlink" href="#positional-encoding-sin-cos" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
 \left\{
              \begin{array}{lr}
@@ -1399,7 +1399,7 @@ Var(q\cdot k) &amp;= \sum_{i=1}^{d_k} Var(q_ik_i) = d_k
 \right.
 \]</div>
 <p>也就是说，对于 <span class="arithmatex">\(pos+k\)</span> 位置的位置向量的某一维度而言，其值可以被表示为 <span class="arithmatex">\(pos\)</span> 和 <span class="arithmatex">\(k\)</span> 位置的位置向量的线性组合。这意味着位置向量之中包含了相对位置信息。但是我有看到有人提出：在经过线性变换层之后，相对位置的信息被破坏。Transformer 被提出时作者可能就发现了这个问题，后续他们又提出了一个新的方法来解决这个问题，加入了一个可训练的相对位置参数。</p>
-<h3 id="prenorm-postnorm">PreNorm 和 PostNorm 的区别</h3>
+<h3 id="prenorm-postnorm">PreNorm 和 PostNorm 的区别<a class="headerlink" href="#prenorm-postnorm" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../assets/norm.jpeg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/norm.jpeg" /></a></p>
 <p>PreNorm 是 LayerNorm 放在了 Attention/FFN 运算之前，PostNorm 是 LayerNorm 放在了 Attention/FFN 之后。</p>
 <ul>
@@ -1410,10 +1410,10 @@ Var(q\cdot k) &amp;= \sum_{i=1}^{d_k} Var(q_ik_i) = d_k
 <p>PostNorm 梯度：<span class="arithmatex">\(\frac{\partial \varepsilon}{\partial x_l} = \frac{\partial \varepsilon}{\partial x_{l+1}}\times \prod_{k=l}^{L-1}\frac{\partial LN(y_k)}{\partial y_k}\times \prod_{k=1}^{L-1}\left(1 + \frac{\partial F(x_k; \theta_k)}{\partial x_k}\right)\)</span></p>
 <p>PreNorm 梯度：<span class="arithmatex">\(\frac{\partial \varepsilon }{\partial x_l} = \frac{\partial \varepsilon}{\partial x_{l+1}}\times \prod_{k=1}^{L-1}\left(1 + \frac{\partial x_{l+1}}{\partial LN(x_l)}\right)\)</span></p>
 <p>所以 PreNorm 的梯度更加稳定，因为 <span class="arithmatex">\(\prod\)</span> 中的数字均大于 <span class="arithmatex">\(1\)</span>，所以不会出现梯度消失的问题。</p>
-<h3 id="embedding-size">为何在获取输入词向量之后需要对矩阵乘以embedding size的开方？意义是什么？</h3>
+<h3 id="embedding-size">为何在获取输入词向量之后需要对矩阵乘以embedding size的开方？意义是什么？<a class="headerlink" href="#embedding-size" title="Permanent link">&para;</a></h3>
 <p>Embedding matrix 的初始化方式是 xavier 初始化，这种方式的方差是 <span class="arithmatex">\(\frac{1}{\text{Embedding size}}\)</span>，因此乘以 Embedding size 的开方使得 Embedding matrix 的方差是 <span class="arithmatex">\(1\)</span>，在这个 scale 下可能更有利于 Embedding matrix 的收敛。</p>
 <hr />
-<h2 id="_5">代码</h2>
+<h2 id="_5">代码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
@@ -1755,7 +1755,7 @@ Var(q\cdot k) &amp;= \sum_{i=1}^{d_k} Var(q_ik_i) = d_k
 </span><span id="__span-1-339"><a id="__codelineno-1-339" name="__codelineno-1-339" href="#__codelineno-1-339"></a>            <span class="n">tokens</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span id="__span-1-340"><a id="__codelineno-1-340" name="__codelineno-1-340" href="#__codelineno-1-340"></a>    <span class="k">return</span> <span class="n">total_loss</span> <span class="o">/</span> <span class="n">total_tokens</span>
 </span></code></pre></div>
-<h2 id="_6">参考链接</h2>
+<h2 id="_6">参考链接<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/149634836">Transformer、Like-Bert、对比学习、ChatGPT相关面试集锦</a></li>
 <li><a href="https://ifwind.github.io/2021/08/18/Transformer%E7%9B%B8%E5%85%B3%E2%80%94%E2%80%94%EF%BC%888%EF%BC%89Transformer%E6%A8%A1%E5%9E%8B/#decoder%E5%B1%82">Transformer相关——（8）Transformer模型</a></li>
@@ -1972,11 +1972,9 @@ Var(q\cdot k) &amp;= \sum_{i=1}^{d_k} Var(q_ik_i) = d_k
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../javascripts/katex.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
-      
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});

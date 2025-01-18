@@ -1359,14 +1359,14 @@
   
 
 
-<h1 id="_1">八股文/智力题整理</h1>
+<h1 id="_1">八股文/智力题整理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>记录一些，八股文和智力题。</p>
 <hr />
-<h2 id="c">C++ 相关</h2>
-<h3 id="c_1">C++ 虚函数</h3>
+<h2 id="c">C++ 相关<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<h3 id="c_1">C++ 虚函数<a class="headerlink" href="#c_1" title="Permanent link">&para;</a></h3>
 <p>一般定义虚函数时是为了多态，允许基类的虚函数指针调用不同子类对该虚函数实现的不同功能。虚函数分为了虚函数和纯虚函数，虚函数是有默认的功能实现的，纯虚函数是没有实现的，要求子类必须实现这个函数。</p>
 <p>纯虚函数的定义方式是在定义的语句后面加<code>=0</code>，例如：<code>virtual void funtion1()=0</code></p>
-<h3 id="vector-push_back-emplace_back">vector 中 push_back 和 emplace_back 的区别</h3>
+<h3 id="vector-push_back-emplace_back">vector 中 push_back 和 emplace_back 的区别<a class="headerlink" href="#vector-push_back-emplace_back" title="Permanent link">&para;</a></h3>
 <p>emplace_back 在某些情况下要更快一些。</p>
 <p><strong>push_back</strong>:</p>
 <ul>
@@ -1377,10 +1377,10 @@
 <ul>
 <li>如果传入的是右指，那么 emplace_back 会直接在 vector 的指定位置的内存创建对应的数据，少了一次 move。其他情况与 push_back 相同。</li>
 </ul>
-<h3 id="move">move 底层是怎么实现的</h3>
+<h3 id="move">move 底层是怎么实现的<a class="headerlink" href="#move" title="Permanent link">&para;</a></h3>
 <p>假设要将 A 中的数据移动到 B 中，move 底层会将 B 指向 A 的数据地址，然后将 A 的数据地址置为 nullptr。也就是说将数据的所有权转移到了 B 中。</p>
 <p>std::move 的作用是将左值引用转换为右值引用，这样使用 <code>a = std::move(b)</code> 时就可以自动调用移动构造函数来进行移动。</p>
-<h3 id="_2">完美转发的原理</h3>
+<h3 id="_2">完美转发的原理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>在 C++17 中，完美转发的实现原理是：</p>
 <ol>
 <li>如果参数是左值引用，那么转发时也使用左值引用，即std::forward(t)返回的是左值引用；</li>
@@ -1394,41 +1394,41 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </span></code></pre></div>
 <hr />
-<h2 id="python">Python 相关</h2>
-<h3 id="python_1">Python 可变对象与不可变对象</h3>
+<h2 id="python">Python 相关<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
+<h3 id="python_1">Python 可变对象与不可变对象<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h3>
 <p>不可变对象是不可变的，当修改这类对象时实际上是创建了一个新的对象并修改引用，并且对原来的不可变对象进行回收。可变对象是可变的，修改的话就是直接修改这个对象。</p>
 <ul>
 <li>不可变对象：int, float, str, tuple</li>
 <li>可变对象：list, dict, set</li>
 </ul>
 <hr />
-<h2 id="_3">智力/算法题</h2>
-<h3 id="1t">如何在 1T 的数据中寻找中位数</h3>
+<h2 id="_3">智力/算法题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1t">如何在 1T 的数据中寻找中位数<a class="headerlink" href="#1t" title="Permanent link">&para;</a></h3>
 <p>快速选择：每次找中间点，然后遍历一遍，将小于中间点的放左边，大于中间点的放右边，然后递归。</p>
-<h3 id="_4">如何在大批量数据中寻找重复数据</h3>
+<h3 id="_4">如何在大批量数据中寻找重复数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>给定 <code>a,b</code> 两个文件，各存放 <span class="arithmatex">\(50\)</span> 亿的数据，每个数据大小 <code>64B</code>, 内存限制 <code>4GB</code>，如何找出 <code>a,b</code> 两个文件的重复数据？</p>
 </blockquote>
-<p>分治 + 哈希来做。首先通过计算算出数据的大致大小 <span class="arithmatex">\(50 \times 10^8 \times 64\text{B} \approx 320\text{GB}\)</span>。考虑将两个文件中的数据各划分为 <span class="arithmatex">\(1000\)</span> 份，这样每一份文件大小大概是 <span class="arithmatex">\(320\text{MB}\)</span>，内存可以完整装载每一份文件。对每一个数据进行 Hash，将 <code>hashValue % 1000</code> 的结果作为标号，将数据分别存储到 <span class="arithmatex">\(1000\)</span> 个文件中。这样我们就有了文件一对应的 <span class="arithmatex">\(1000\)</span> 份文件和文件二对应的 <span class="arithmatex">\(1000\)</span> 份文件。我们将这 <span class="arithmatex">\(2000\)</span> 份文件分为标号相同的 <span class="arithmatex">\(1000\)</span> <strong>对</strong>文件，所有可能的重复数据只可能出现在同一对文件中，这样我们就将问题规模缩小到了 <span class="arithmatex">\(320\text{MB}\)</span>。然后我们就可以将每一对文件的第一份全部加入到 <code>HashSet</code> 中，然后枚举第二份文件的数据，如果在 <code>HashSet</code> 中出现过，那么就是重复数据。</p>
-<h3 id="k">如何在大批量数据中寻找出现次数最多的 K 个数据</h3>
+<p>分治 + 哈希来做。首先通过计算算出数据的大致大小 <span class="arithmatex">\(50 \times 10^8 \times 64\text{B} \approx 320\text{GB}\)</span>。考虑将两个文件中的数据各划分为 <span class="arithmatex">\(1000\)</span> 份，这样每一份文件大小大概是 <span class="arithmatex">\(320\text{MB}\)</span>，内存可以完整装载每一份文件。对每一个数据进行 Hash，将 <code>hashValue % 1000</code> 的结果作为标号，将数据分别存储到 <span class="arithmatex">\(1000\)</span> 个文件中。这样我们就有了文件一对应的 <span class="arithmatex">\(1000\)</span> 份文件和文件二对应的 <span class="arithmatex">\(1000\)</span> 份文件。我们将这 <span class="arithmatex">\(2000\)</span> 份文件分为标号相同的 <span class="arithmatex">\(1000\)</span> **对**文件，所有可能的重复数据只可能出现在同一对文件中，这样我们就将问题规模缩小到了 <span class="arithmatex">\(320\text{MB}\)</span>。然后我们就可以将每一对文件的第一份全部加入到 <code>HashSet</code> 中，然后枚举第二份文件的数据，如果在 <code>HashSet</code> 中出现过，那么就是重复数据。</p>
+<h3 id="k">如何在大批量数据中寻找出现次数最多的 K 个数据<a class="headerlink" href="#k" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>有一个 <span class="arithmatex">\(1\text{GB}\)</span> 大小的文件，文件里每一行是一个词，每个词的大小不超过 <span class="arithmatex">\(16\text{B}\)</span>，内存大小限制是 <span class="arithmatex">\(1\text{1MB}\)</span>，要求范围频数最高的 <span class="arithmatex">\(100\)</span> 个词。</p>
 </blockquote>
 <p>为了满足内存限制，我们仍然需要先采取划分的方式来将大文件分割成小文件。可以按照 <code>hash(x) % 5000</code> 来进行划分，如果划分后仍不满足就继续划分。划分之后用 <code>Hashmap</code> 统计出现次数即可，统计完所有文件的所有词的出现次数之后再开一个小根堆，如果某一个数字大于堆顶元素就将其加入到堆中。维护堆的大小不超过 K 即可。</p>
-<h3 id="_5">如何在一个超大文件中找到出现次数最多的数据</h3>
+<h3 id="_5">如何在一个超大文件中找到出现次数最多的数据<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>与上一题同理，超大文件无法直接读入内存，那就需要一边读入一边将信息写出到文件中，先划分，再统计每个文件内数据的出现次数，最后求 <code>max</code>。</p>
-<h3 id="25">如何在 2.5 亿个整数中找出不重复的整数（内存无法容纳完整的这些数字）</h3>
+<h3 id="25">如何在 2.5 亿个整数中找出不重复的整数（内存无法容纳完整的这些数字）<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
 <p>有两种方法：</p>
 <ol>
 <li>按照跟之前一样的方法，按照哈希余数进行划分，然后分别统计再整合。</li>
 <li>位图法，简单来说就是操作二进制位来进行判断。空间占用与整数的大小有关，如果数字过于稀疏可能反而会导致更大的占用。也有一种位图索引的方法例如 <code>RoaringBitmap</code> 可以进行压缩。从最朴素的位图来说，可以将大小为 <span class="arithmatex">\(x\)</span> 的数字映射到第 <span class="arithmatex">\(2x\)</span> 和第 <span class="arithmatex">\(2x+1\)</span> 个二进制位中，利用二进制位来表示状态：<code>00</code> 表示未出现过, <code>01</code> 表示出现过一次, <code>10</code> 表示出现过多次。这样的话假设所有整数都在 <code>int</code> 范围内，那么只需要 <span class="arithmatex">\(2*2^{32}\)</span> 个二进制位，也就是 <span class="arithmatex">\(1\text{GB}\)</span> 的空间。</li>
 </ol>
-<h3 id="40">如何在 40 亿个整数中判断某个数字是否出现过</h3>
+<h3 id="40">如何在 40 亿个整数中判断某个数字是否出现过<a class="headerlink" href="#40" title="Permanent link">&para;</a></h3>
 <ol>
 <li>可以按照哈希余数进行划分，然后再分别判断。</li>
 <li>通过位图法，将数字映射到位图中，然后判断。</li>
 </ol>
-<h3 id="1000">如何在 1000 万个记录中找到出现次数最多的记录</h3>
+<h3 id="1000">如何在 1000 万个记录中找到出现次数最多的记录<a class="headerlink" href="#1000" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>搜索引擎会通过日志文件把用户每次检索使用的所有查询串都记录下来，每个查询床的长度不超过 255 字节。
 假设目前有 1000w 个记录（这些查询串的重复度比较高，虽然总数是 1000w，但如果除去重复后，则不超过 300w 个）。请统计最热门的 10 个查询串，要求使用的内存不能超过 1G。（一个查询串的重复度越高，说明查询它的用户越多，也就越热门。）</p>
@@ -1439,15 +1439,15 @@
 <li>因为题目中提到了重复的串比较多，所以我们可以考虑通过 HashMap 储存，占用空间 <span class="arithmatex">\(300w*(255+4)\approx 777\text{MB}\)</span></li>
 <li>Trie 树。</li>
 </ol>
-<h2 id="8">如何在大量电话号码中统计不同号码的个数，每个号码为 8 位数字</h2>
+<h2 id="8">如何在大量电话号码中统计不同号码的个数，每个号码为 8 位数字<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <p>位图法 <span class="arithmatex">\(10^9 / 8 / 1024 / 1024 \approx 100\text{MB}\)</span></p>
-<h2 id="5">如何从大量数字中找到中位数（5亿个数）</h2>
+<h2 id="5">如何从大量数字中找到中位数（5亿个数）<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <ol>
 <li>双堆法</li>
 <li>二分中位数的值，二分之后将数据分为大于 mid 和小于 mid 的两个部分，然后递归操作。</li>
 </ol>
 <hr />
-<h2 id="_6">参考链接</h2>
+<h2 id="_6">参考链接<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1550063">10 道 BAT 大厂海量数据面试题</a></li>
 <li><a href="https://developer.aliyun.com/article/1463199">C++ 完美转发深度解析:从入门到精通</a></li>
@@ -1661,11 +1661,9 @@
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../javascripts/katex.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
-      
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});

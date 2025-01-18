@@ -1035,16 +1035,16 @@
   
 
 
-<h1 id="macos">MacOS 系统下如何格式化磁盘</h1>
+<h1 id="macos">MacOS 系统下如何格式化磁盘<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h1>
 <p>在 macos 中格式化可以通过磁盘工具(Disk Utility)来进行格式化，是一个系统自带的软件。也可以通过终端进行格式化，我在进行操作时通过磁盘工具进行抹除的方法失败了，所以只能通过终端进行格式化。</p>
 <hr />
-<h2 id="_1">通过磁盘工具进行格式化</h2>
+<h2 id="_1">通过磁盘工具进行格式化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>首先打开磁盘工具，<code>command + space</code>，搜索磁盘工具:</p>
 <p><a class="glightbox" href="../assets/serach-disk.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="启动截图" src="../assets/serach-disk.png" /></a></p>
 <p>打开之后，在左侧选择列表中选择要进行格式化的磁盘（注意千万不要选错），然后点击顶部右侧的"抹掉"按钮。如图所示：</p>
 <p><a class="glightbox" href="../assets/delete.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="抹去按钮截图" src="../assets/delete.png" /></a></p>
 <hr />
-<h2 id="_2">通过终端进行格式化（推荐）</h2>
+<h2 id="_2">通过终端进行格式化（推荐）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>如果图形化界面的抹除遇到了错误，那么最好通过终端命令行的方式来进行抹除。首先打开终端，输入<code>diskutil list</code>来列举出所有的磁盘，找到自己需要进行抹除的磁盘编号：</p>
 <p><a class="glightbox" href="../assets/disk-list.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="disklist截图" src="../assets/disk-list.png" /></a></p>
 <p>例如我这里找到我要抹除的磁盘就是<code>disk7</code>，使用下面的命令对进行格式化，注意实际使用使需要将其中的<code>disk7</code>替换为自己的磁盘：</p>
@@ -1269,11 +1269,9 @@
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../javascripts/katex.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
-      
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});
