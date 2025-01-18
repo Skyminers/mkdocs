@@ -13,9 +13,9 @@ nav:
     - interview/transformer.md
     - interview/leetcode100.md
     - interview/cheating_sheet.md
-  - 机器学习:
-    - machine_learning/index.md
-    - machine_learning/decision_tree.md
+  - 技术:
+    - tech/index.md
+    - tech/decision_tree.md
   - 方法记录:
     - methods/index.md
     - methods/format_disk.md
