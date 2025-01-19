@@ -64,6 +64,10 @@
   [data-md-color-primary="black"] .md-header {
     background-color: var(--md-header-bg-color);
   }
+
+  .md-header {
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  }
   
   .md-header--shadow,
   .md-header--landing {
