@@ -20,13 +20,7 @@ head -n 1 /etc/issue
 cat /proc/cpuinfo
 ```
 
-## 杂项
-
-### 查找端口占用
-
-```console
-lsof -i:端口号
-```
+## CUDA 相关
 
 ### 删除显卡上所有的进程
 
@@ -43,6 +37,28 @@ fuser -v /dev/nvidiaX 2>&1 | grep zhr | xargs -t -n 1 kill -9
 ```
 
 貌似存在一些问题，主要是 `xargs` 没有正确 parse 出 PID，把所有内容都放进去 Kill 了一遍。
+
+### 禁用损坏的卡
+
+可以先使用下面的命令查看系统日志，找出报错显卡的 ID，可以重点观察 `rm_init_adapter failed` 等字样。
+
+```bash
+dmest -T
+```
+
+找到的 ID 的格式类似 `0000:0b:00.0`，随后通过下面的命令禁用坏卡：
+
+```bash
+sudo nvidia-smi drain -p 0000:0b:00.0 -m 1
+```
+
+## 杂项
+
+### 查找端口占用
+
+```console
+lsof -i:端口号
+```
 
 ### 挂载硬盘
 
