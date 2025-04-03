@@ -2,7 +2,7 @@
 
 # 你好
 
-我是 Sky_miner 一个即将毕业的 ZJUer。希望你能在这里找到你需要的信息。
+我是 Sky_miner 一个刚毕业工作不久的新人。希望你能在这里找到你需要的信息。
 
 <div class="grid cards" markdown>
 
