@@ -15,6 +15,7 @@ nav:
   - 技术:
     - tech/index.md
     - tech/decision_tree.md
+    - tech/triton_process.md
   - 方法记录:
     - methods/index.md
     - methods/format_disk.md
