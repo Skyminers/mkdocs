@@ -14,8 +14,9 @@ nav:
     - interview/cheating_sheet.md
   - 技术:
     - tech/index.md
-    - tech/decision_tree.md
+    - tech/triton_autotune.md
     - tech/triton_process.md
+    - tech/decision_tree.md
   - 方法记录:
     - methods/index.md
     - methods/format_disk.md
