@@ -3,7 +3,7 @@
 
 > 本文梳理了从 triton DSL 到执行的逐过程
 
-## Step 1: Python 代码
+## Step 1: Triton DSL
 
 我们直接以 triton 教程中的一段向量相加为例。
 
@@ -64,9 +64,7 @@ print(output)
 
 其中的 `add_kernel` 是我们这次的主角。直接运行这段代码，triton 会在 `~/.triton/cache` 中保存此次的所有中间产物。
 
-## Step 2: Triton DSL 代码
-
-此处的代码实际上是 Triton JIT 编译流程的输入，即 Python DSL。是编译流程的起点。
+## Step 2: MLIR 代码
 
 该代码中包含了最高级别的抽象：
 
